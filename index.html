@@ -203,8 +203,20 @@
     <!-- Writing -->
     <section id="writing">
         <h2>Blog</h2>
-        <div class="card-container" id="blog-cards">
-            <!-- Blog posts will be loaded dynamically here -->
+
+        <!-- Preview: Show the 3 most recent posts -->
+        <div class="card-container" id="blog-preview"></div>
+
+        <!-- Expandable full blog list -->
+        <div style="text-align:center; margin-top: 30px;">
+            <button onclick="toggleBlogList()" style="padding: 10px 20px; background-color: #5a4c39; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                Show All Posts
+            </button>
+        </div>
+
+        <div id="blog-list-container" style="margin-top: 40px; display: none;">
+            <h2>All Blog Posts</h2>
+            <div id="blog-list"></div>
         </div>
     </section>
 
@@ -238,11 +250,25 @@
     </footer>
 
     <script>
+        function toggleBlogList() {
+            const container = document.getElementById("blog-list-container");
+            const btn = event.target;
+            if (container.style.display === "none") {
+                container.style.display = "block";
+                btn.textContent = "Hide All Posts";
+            } else {
+                container.style.display = "none";
+                btn.textContent = "Show All Posts";
+            }
+        }
+
         fetch('blog-posts.json')
             .then(response => response.json())
             .then(posts => {
-                const container = document.getElementById('blog-cards');
-                posts.forEach(post => {
+                const preview = document.getElementById('blog-preview');
+                const list = document.getElementById('blog-list');
+
+                posts.slice(0, 3).forEach(post => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
@@ -250,7 +276,18 @@
                         <p>${post.excerpt}</p>
                         <a href="${post.link}">Read more</a>
                     `;
-                    container.appendChild(card);
+                    preview.appendChild(card);
+                });
+
+                posts.forEach(post => {
+                    const entry = document.createElement('div');
+                    entry.className = 'card';
+                    entry.innerHTML = `
+                        <h3>${post.title}</h3>
+                        <p>${post.excerpt}</p>
+                        <a href="${post.link}">Read full post</a>
+                    `;
+                    list.appendChild(entry);
                 });
             })
             .catch(error => console.error('Error loading blog posts:', error));
