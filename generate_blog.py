@@ -171,7 +171,7 @@ post_data = {
     "date": date_str
 }
 
-json_file = "blog-posts.json"
+json_file = "posts/blog-posts.json"
 data = []
 
 # Read existing data if the file exists
