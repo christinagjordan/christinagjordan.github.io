@@ -246,7 +246,7 @@
             .then(response => response.json())
             .then(posts => {
                 const preview = document.getElementById('blog-preview');
-                posts.slice(0, 3).forEach(post => {
+                posts.slice(0, 5).forEach(post => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
