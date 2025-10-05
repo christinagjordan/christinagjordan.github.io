@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christina Jordan | Portfolio</title>
+    <style>
+        /* Base styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #fdfdfd;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007acc;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            background-color: #1e1e1e;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        nav {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 15px 25px;
+            color: white;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        /* Card layout for projects, writings, passions */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #007acc;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Christina Jordan</h1>
+        <p>Data Analyst Engineer | Chemical Engineer | Food Science Enthusiast</p>
+    </header>
+
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Résumé</a>
+        <a href="#writing">Writing</a>
+        <a href="#passion">Passion Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- About Me -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hi! I'm Christina, a chemical engineering student at Georgia Tech with a passion for food science, data-driven optimization, and innovative research. I love tackling complex problems, building practical solutions, and sharing knowledge through my projects and writing.</p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Data Processing Script</h3>
+                <p>Python script that processes experimental data, generates charts and summary statistics dynamically. Built for research and lab environments.</p>
+            </div>
+            <div class="card">
+                <h3>PBM Parameter Estimation</h3>
+                <p>Pyomo-based inverse solver to fit molecular weight distribution data using DAEs and collocation discretization.</p>
+            </div>
+            <div class="card">
+                <h3>Optimization Research</h3>
+                <p>Developed data-driven optimization frameworks for mechanochemical mill models with 50 coupled ODEs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Résumé -->
+    <section id="resume">
+        <h2>Résumé</h2>
+        <p style="text-align:center;"><a href="christina_jordan_resume.pdf" target="_blank">Download My Résumé</a></p>
+    </section>
+
+    <!-- Writing -->
+    <section id="writing">
+        <h2>Writing</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Food Science Blog</h3>
+                <p>Exploring allergy-friendly food formulations, sustainable food systems, and science communication techniques.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Passion Projects -->
+    <section id="passion">
+        <h2>Passion Projects</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Honey Bunny Originals</h3>
+                <p>Created a gluten- and nut-free cookie mix business, applying food science and entrepreneurship principles to produce safe and delicious products.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <p style="text-align:center;">
+            Email: <a href="mailto:christinagjordan@gmail.com">christinagjordan@gmail.com</a><br>
+            LinkedIn: <a href="https://linkedin.com/in/cjordan82" target="_blank">linkedin.com/in/cjordan82</a><br>
+            GitHub: <a href="https://github.com/christinagjordan" target="_blank">github.com/christinagjordan</a>
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Christina Jordan</p>
+    </footer>
+
+</body>
+</html>
