@@ -103,11 +103,11 @@ html = f"""<!DOCTYPE html>
 </header>
 
 <nav>
-    <a href="../index.html#about">About Me</a>
-    <a href="../index.html#projects">Projects</a>
-    <a href="../index.html#community">Community</a>
-    <a href="../blog.html">Blog</a>
-    <a href="../assets/christina_jordan_resume.pdf">Résumé</a>
+    <a href="/index.html#about">About Me</a>
+    <a href="/index.html#projects">Projects</a>
+    <a href="/index.html#community">Community</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/assets/christina_jordan_resume.pdf">Résumé</a>
     <a href="#contact">Contact</a>
 </nav>
 
