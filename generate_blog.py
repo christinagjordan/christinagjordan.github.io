@@ -100,11 +100,11 @@ html = f"""<!DOCTYPE html>
         header h1 {{ font-size: 2.5rem; margin-bottom: 5px; }}
         header p {{ font-size: 1.2rem; color: #ddd5c8; text-align: center;}}
         nav {{ background-color: #5a4c39; display: flex; justify-content: center; flex-wrap: wrap; border-bottom: 3px solid #726048; }}
-        nav a {{ padding: 15px 25px; color: #fcf8f3; font-weight: 500; transition: background 0.3s, color 0.3s; }}
-        nav a:hover {{ background-color: #4a3e2f; }}
+        nav a {{ padding: 15px 25px; color: #fcf8f3; font-weight: 500; transition: background 0.3s; }}
+        nav a:hover {{ background-color: #575757; }}
         .content-container {{ max-width: 800px; margin: 50px auto; padding: 0 25px; }}
         .blog-title {{ font-size: 2.5rem; margin-bottom: 10px; color: #3b2918; text-align: center; font-weight: 700; }}
-        .blog-summary {{ font-size: 1.15rem; margin-bottom: 30px; padding: 15px; background-color: #ede2d3; border-left: 5px solid #726048; font-style: italic; color: #5a4c39; border-radius: 4px; }}
+        .blog-summary {{ font-size: 1.15rem; margin-bottom: 30px; padding: 15px; background-color: #ede2d3; border-left: 5px solid #726048; font-style: italic; color: #5a4c39; border-radius: 4px; text-align:left;}}
         p {{ margin-bottom: 1.2rem; font-size: 1.05rem; text-align: justify; }}
         h2 {{ text-align: center; margin-top: 50px; margin-bottom: 20px; font-size: 1.8rem; color: #5f3c10; }}
         footer {{ text-align: center; padding: 30px 20px; background-color: #726048; color: #fcf8f3; margin-top: 80px; }}
