@@ -1,35 +1,43 @@
-import openai
+from openai import OpenAI
 import os
 import json
 from datetime import datetime
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-if openai.api_key is None:
+# Initialize client
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
     raise ValueError("OPENAI_API_KEY not set. Export it as an environment variable.")
 
-# Prompt user
-title = input("Enter blog title/topic: ")
-extra = input("Enter extra details about topic here: ")
+client = OpenAI(api_key=api_key)
 
-response = openai.ChatCompletion.create(
+# Prompt user
+title = input("Enter blog title/topic: ").strip()
+extra = input("Enter extra details about topic: ").strip()
+
+if not title:
+    raise ValueError("Blog title cannot be empty.")
+
+# Generate content using new SDK style
+response = client.chat.completions.create(
     model="gpt-4",
     messages=[
-        {"role": "system", "content": "You are a helpful assistant that writes blog posts."},
-        {"role": "user", "content": f"Write a blog post titled '{title}' with a short 1-sentence summary at the top. Please make sure to use these details in the post: {extra}"}
+        {"role": "system", "content": "You are a helpful assistant that writes blog posts in a clear, engaging style."},
+        {"role": "user", "content": f"Write a blog post titled '{title}' with a short 1-sentence summary at the top. Include these details: {extra}"}
     ],
     temperature=0.7
 )
 
-content_raw = response['choices'][0]['message']['content']
-paragraphs = content_raw.split('\n')
-summary = paragraphs[0].strip()
-content = ''.join(f'<p>{p.strip()}</p>' for p in paragraphs[1:] if p.strip())
+# Extract generated content
+content_raw = response.choices[0].message.content
+paragraphs = content_raw.split('\n\n')
+summary = paragraphs[0].strip() if paragraphs else ""
+content_html = ''.join(f'<p>{p.strip()}</p>' for p in paragraphs[1:] if p.strip())
 
 # File setup
 slug = title.lower().replace(" ", "-").replace("/", "-")
 date_str = datetime.now().strftime("%Y-%m-%d")
+os.makedirs("posts", exist_ok=True)
 filename = f"posts/blog_{slug}_{date_str}.html"
-link = filename
 
 # Write HTML
 html = f"""<!DOCTYPE html>
@@ -71,8 +79,9 @@ html = f"""<!DOCTYPE html>
 </nav>
 
 <section>
-    <h2>{title}</h2>
-    {content}
+    <h1>{title}</h1>
+    <p class="summary">{summary}</p>
+    {content_html}
 </section>
 
 <!-- Contact -->
