@@ -126,12 +126,13 @@
             scroll-behavior: smooth;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pVjvH6G2xFk6qF9Jx0+G0o1bQ1kv0W7Vp+6kxkXf71GZf1/6aYF6kF7aOwK7K57rHg7d3wYNmSPnQbZLR5vT5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
     <header>
         <h1>Christina Jordan</h1>
-        <p>Chemical & Biomolecular Engineering</p>
+        <p>Chemical & Biomolecular Engineering @ Georgia Tech</p>
     </header>
 
     <nav>
@@ -146,7 +147,14 @@
     <!-- About Me -->
     <section id="about">
         <h2>About Me</h2>
-        <p>Hi! I'm Christina, a ChBE student at Georgia Tech with a passion for data. I love tackling complex problems, building practical solutions, and sharing my knowledge through projects and writing.</p>
+        <div style="display:flex; align-items:center; gap:30px; flex-wrap:wrap; justify-content:center;">
+            <img src="assets/christina.jpg" alt="Christina Jordan" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
+            <p style="max-width:600px;">
+                Hi! I'm Christina, a ChBE student at Georgia Tech with a passion for using data and process modeling to solve complex engineering problems. My current research focuses on developing an inverse solver for a high-fidelity mechanochemical mill model (50+ ODEs) using Pyomo, IPOPT, and parameter estimation techniques. I have also contributed to biomedical device research (NIH-funded preterm birth prevention studies), launched a gluten- and nut-free cookie mix business, and worked as a part-time data analytics engineer for a carbon-capture startup. 
+                
+                I am equally comfortable in technical, entrepreneurial, and cross-functional environments. My skillset includes process simulation, optimization, data analysis, and computational modeling, with proficiency in Python, Pyomo, MATLAB, and scientific communication. I’m especially interested in roles at the intersection of chemical engineering, data science, and product innovation—particularly in food, biotech, and sustainable manufacturing.
+            </p>
+        </div>
     </section>
 
     <!-- Projects -->
@@ -154,11 +162,11 @@
         <h2>Projects</h2>
         <div class="card-container">
             <div class="card">
-                <h3>Data Processing Script</h3>
+                <h3>Data Analyst @ ZeoDAC</h3>
                 <p>Python script that processes experimental data, generates charts and summary statistics dynamically. Built for research and lab environments.</p>
             </div>
             <div class="card">
-                <h3>PBM Parameter Estimation</h3>
+                <h3>Research Fellow @ Boukouvala Lab</h3>
                 <p>Pyomo-based inverse solver to fit molecular weight distribution data using DAEs and collocation discretization.</p>
             </div>
             <div class="card">
@@ -170,18 +178,15 @@
 
     <!-- Résumé -->
     <section id="resume">
-        <h2>Résumé</h2>
-        <p style="text-align:center;"><a href="christina_jordan_resume.pdf" target="_blank">Download My Résumé</a></p>
+        <h2>Resume</h2>
+        <p style="text-align:center;"><a href="assets/christina_jordan_resume.pdf" target="_blank">Download My Resume!</a></p>
     </section>
 
     <!-- Writing -->
     <section id="writing">
-        <h2>Writing</h2>
-        <div class="card-container">
-            <div class="card">
-                <h3>Food Science Blog</h3>
-                <p>Exploring allergy-friendly food formulations, sustainable food systems, and science communication techniques.</p>
-            </div>
+        <h2>Blog</h2>
+        <div class="card-container" id="blog-cards">
+            <!-- Blog posts will be loaded dynamically here -->
         </div>
     </section>
 
@@ -199,16 +204,42 @@
     <!-- Contact -->
     <section id="contact">
         <h2>Contact</h2>
-        <p style="text-align:center;">
-            Email: <a href="mailto:christinagjordan@gmail.com">christinagjordan@gmail.com</a><br>
-            LinkedIn: <a href="https://linkedin.com/in/cjordan82" target="_blank">linkedin.com/in/cjordan82</a><br>
-            GitHub: <a href="https://github.com/christinagjordan" target="_blank">github.com/christinagjordan</a>
-        </p>
+        <div style="text-align:center; font-size: 1.5rem; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 20px;">
+            <a href="mailto:christinagjordan@gmail.com" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://linkedin.com/in/cjordan82" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/christinagjordan" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
     </section>
+
 
     <footer>
         <p>&copy; 2025 Christina Jordan</p>
     </footer>
+
+    <script>
+        fetch('blog-posts.json')
+            .then(response => response.json())
+            .then(posts => {
+                const container = document.getElementById('blog-cards');
+                posts.forEach(post => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <h3>${post.title}</h3>
+                        <p>${post.excerpt}</p>
+                        <a href="${post.link}">Read more</a>
+                    `;
+                    container.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error loading blog posts:', error));
+    </script>
 
 </body>
 </html>
