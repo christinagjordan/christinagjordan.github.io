@@ -150,7 +150,7 @@
             <p style="max-width:600px;">
                 Hi! I'm Christina, a ChBE student at Georgia Tech with a passion for using data and process modeling to solve complex engineering problems. My current research focuses on developing an inverse solver for a high-fidelity mechanochemical mill model (50+ ODEs) using Pyomo, IPOPT, and parameter estimation techniques. I have also contributed to biomedical device research (NIH-funded preterm birth prevention studies), launched a gluten- and nut-free cookie mix business, and worked as a part-time data analytics engineer for a carbon-capture startup. 
                 
-                I am equally comfortable in technical, entrepreneurial, and cross-functional environments. My skillset includes process simulation, optimization, data analysis, and computational modeling, with proficiency in Python, Pyomo, MATLAB, and scientific communication. I’m especially interested in roles at the intersection of chemical engineering, data science, and product innovation—particularly in food, biotech, and sustainable manufacturing.
+                I am equally comfortable in technical, entrepreneurial, and cross-functional environments. My skillset includes process simulation, optimization, data analysis, and computational modeling, with proficiency in Python, Pyomo, MATLAB, and scientific communication. I’m especially interested in roles at the intersection of chemical engineering, data science, and product innovation(particularly in food, biotech, and sustainable manufacturing).
             </p>
             <img src="assets/IMG_0750.jpeg" alt="Christina Jordan Headshot" style="width:200px; height:250px; object-fit:cover;">
         </div>
@@ -203,21 +203,13 @@
     <!-- Writing -->
     <section id="writing">
         <h2>Blog</h2>
-
-        <!-- Preview: Show the 3 most recent posts -->
         <div class="card-container" id="blog-preview"></div>
 
-        <!-- Expandable full blog list -->
-        <div style="text-align:center; margin-top: 30px;">
-            <button onclick="toggleBlogList()" style="padding: 10px 20px; background-color: #5a4c39; color: white; border: none; border-radius: 8px; cursor: pointer;">
+        <p style="text-align:center; margin-top: 30px;">
+            <a href="blog.html" style="padding: 10px 20px; background-color: #5a4c39; color: white; border-radius: 8px; font-weight: bold; display: inline-block;">
                 Show All Posts
-            </button>
-        </div>
-
-        <div id="blog-list-container" style="margin-top: 40px; display: none;">
-            <h2>All Blog Posts</h2>
-            <div id="blog-list"></div>
-        </div>
+            </a>
+        </p>
     </section>
 
     <!-- Contact -->
@@ -248,26 +240,12 @@
     <footer>
         <p>&copy; 2025 Christina Jordan</p>
     </footer>
-
+    
     <script>
-        function toggleBlogList() {
-            const container = document.getElementById("blog-list-container");
-            const btn = event.target;
-            if (container.style.display === "none") {
-                container.style.display = "block";
-                btn.textContent = "Hide All Posts";
-            } else {
-                container.style.display = "none";
-                btn.textContent = "Show All Posts";
-            }
-        }
-
         fetch('blog-posts.json')
             .then(response => response.json())
             .then(posts => {
                 const preview = document.getElementById('blog-preview');
-                const list = document.getElementById('blog-list');
-
                 posts.slice(0, 3).forEach(post => {
                     const card = document.createElement('div');
                     card.className = 'card';
@@ -277,17 +255,6 @@
                         <a href="${post.link}">Read more</a>
                     `;
                     preview.appendChild(card);
-                });
-
-                posts.forEach(post => {
-                    const entry = document.createElement('div');
-                    entry.className = 'card';
-                    entry.innerHTML = `
-                        <h3>${post.title}</h3>
-                        <p>${post.excerpt}</p>
-                        <a href="${post.link}">Read full post</a>
-                    `;
-                    list.appendChild(entry);
                 });
             })
             .catch(error => console.error('Error loading blog posts:', error));
