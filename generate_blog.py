@@ -1,34 +1,31 @@
-from openai import OpenAI
+from google import genai
 import os
 import json
 from datetime import datetime
 
 # Initialize client
-api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
-    raise ValueError("OPENAI_API_KEY not set. Export it as an environment variable.")
+    raise ValueError("api key not set. please export it as an environment variable.")
 
-client = OpenAI(api_key=api_key)
+client = genai.Client()
 
 # Prompt user
 title = input("Enter blog title/topic: ").strip()
 extra = input("Enter extra details about topic: ").strip()
 
 if not title:
-    raise ValueError("Blog title cannot be empty.")
+    print("Must enter value. Try again.")
+    title = input("Enter blog title/topic: ").strip()
 
 # Generate content using new SDK style
-response = client.chat.completions.create(
-    model="gpt-4",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant that writes blog posts in a clear, engaging style."},
-        {"role": "user", "content": f"Write a blog post titled '{title}' with a short 1-sentence summary at the top. Include these details: {extra}"}
-    ],
-    temperature=0.7
+response = cresponse = client.models.generate_content(
+    model="gemini-2.5-flash", 
+    contents=f"Write a blog post about this topic '{title}' with a short 1-sentence summary at the top. Title it. Include these details: {extra}"
 )
 
 # Extract generated content
-content_raw = response.choices[0].message.content
+content_raw = response.text
 paragraphs = content_raw.split('\n\n')
 summary = paragraphs[0].strip() if paragraphs else ""
 content_html = ''.join(f'<p>{p.strip()}</p>' for p in paragraphs[1:] if p.strip())
@@ -74,7 +71,7 @@ html = f"""<!DOCTYPE html>
     <a href="index.html#projects">Projects</a>
     <a href="index.html#community">Community</a>
     <a href="blog.html">Blog</a>
-    <a href="index.html#resume">Résumé</a>
+    <a href="assets/christina_jordan_resume.pdf">Résumé</a>
     <a href="#contact">Contact</a>
 </nav>
 
@@ -115,7 +112,7 @@ html = f"""<!DOCTYPE html>
 
 </body>
 </html>"""
-
+link = f"christinagjordan.github.io/{filename}"
 # Save HTML
 with open(filename, "w", encoding="utf-8") as f:
     f.write(html)
